@@ -19,9 +19,26 @@ app.use(express.static(path.join(__dirname,'dist','clothes-app')));
 app.use(morgan('dev'));
 
 //Routes
+const productRouter = require('./server/routes/product-router');
+const categoryRouter = require('./server/routes/category-router');
 
-app.get('*', (req,res,next) => {
-    res.sendFile(path.join(__dirname,'dist','clothes-app'));
+app.use('/api/products', productRouter);
+
+app.use('/api/categories', categoryRouter);
+
+
+//Serve index.html
+app.get('/', (req,res,next) => {
+    res.sendFile(path.join(__dirname,'dist','clothes-app/index.html'));
+});
+
+
+//Error handling
+app.use((err,req,res,next) => {
+    if(err.status)
+        res.status(err.status).send(err.message);
+    else
+        res.status(500).send();
 });
 
 app.listen(PORT,IP, () => {
