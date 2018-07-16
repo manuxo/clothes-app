@@ -14,13 +14,6 @@ const con = mysql.createConnection({
 
 let categoryRepo = {};
 
-categoryRepo.Category = class {
-    constructor(id = null, name){
-        this.id = id;
-        this.name = name;
-    }
-};
-
 categoryRepo.findAll = (callback) => {
     if(con){
         let sql = 'SELECT * FROM categories';

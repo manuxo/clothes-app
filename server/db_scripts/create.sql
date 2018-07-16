@@ -42,7 +42,8 @@ CREATE TABLE products(
     image varchar(100) not null,
     name varchar(45) not null,
     description text not null,
-    price double not null
+    price double not null,
+    brand varchar(45) not null
 );
 
 CREATE TABLE categories(

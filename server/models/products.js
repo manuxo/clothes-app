@@ -14,17 +14,6 @@ const con = mysql.createConnection({
 
 let productRepo = {};
 
-productRepo.Product = class {
-    constructor(id = null, name, image, description, price, category){
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.description = description;
-        this.category = category;
-    }
-};
-
-
 productRepo.findAll = callback => {
     if(con){
         let sql = 'SELECT * FROM products';

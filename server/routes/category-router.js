@@ -1,5 +1,8 @@
 const express = require('express');
 const categoryRepo = require('../models/categories');
+
+
+//Exports router
 let categoryRouter = express.Router();
 
 categoryRouter.get('/', (req,res) => {
