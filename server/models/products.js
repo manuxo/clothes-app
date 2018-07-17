@@ -38,4 +38,16 @@ productRepo.findById = (id,callback) => {
     }
 }
 
+productRepo.findByCategoryId = (id_category, callback) => {
+    if(con){
+        let sql = `SELECT * FROM products p WHERE p.id_category=${id_category}`;
+        con.query(sql, (err,rows)=> {
+            if(err)
+                throw err;
+            else
+                callback(rows);
+        });
+    }
+}
+
 module.exports = productRepo;
