@@ -2,17 +2,11 @@ body {
     padding-top: 54px;
 }
 
-app-category{
-    width: 25%!important;
-}
-
-app-products{
-    width: 75%!important;
-}
-
 div.main-content{
     margin: 15px auto;
 }
+
+
 
 @media (min-width: 992px) {
   body {

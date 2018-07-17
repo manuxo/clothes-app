@@ -29,7 +29,7 @@ app.use('/api/categories', categoryRouter);
 
 
 //Serve index.html
-app.get('/', (req,res,next) => {
+app.get('*', (req,res,next) => {
     res.sendFile(path.join(__dirname,'dist','clothes-app/index.html'));
 });
 

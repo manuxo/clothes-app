@@ -1,11 +1,10 @@
-<div class="container">
-  <div class="row" *ngIf="products">
-        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
-            <div class="card h-100">
+<div class="row" *ngIf="products">
+  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
+      <div class="card h-100">
               <a href="#">
                 <img class="card-img-top" [src]="'http://localhost:3000/img/' + product.image" alt="{{product.image}}">
               </a>
-              <div class="card-body">
+        <div class="card-body">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">
                       <h4 class="card-title" style="color:darkgray;">{{product.brand | uppercase}}</h4>
@@ -22,15 +21,14 @@
                     <p class="card-text">{{product.description}}</p>
                   </li>
                   <li class="list-group-item">
-                    <button class="btn btn-dark" style="width:100%; text-align: center;">
-                      Añadir al carrito
-                    </button>
-                  </li>
-                </ul>
-              </div><!--.card-body-->
-            </div><!--.card-->
-        </div><!--.col-lg-4 col-md-6 mb-4-->
-    </div><!--.row-->
-</div><!--.container-->
+            <button class="btn btn-dark" style="width:100%; text-align: center;">
+              Añadir al carrito
+            </button>
+          </li>
+        </ul>
+      </div><!--.card-body-->
+    </div><!--.card-->
+  </div><!--.col-lg-4 col-md-6 mb-4-->
+</div><!--.row-->
 
 
