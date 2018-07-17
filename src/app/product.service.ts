@@ -22,4 +22,9 @@ export class ProductService {
     const url = `${this.productsUrl}/${id}`;
     return this.http.get<Product>(url);
   }
+
+  findByCategoryId(id_category: number): Observable<Product[]>{
+    const url = `${this.productsUrl}/category/${id_category}`;
+    return this.http.get<Product[]>(url);
+  }
 }
