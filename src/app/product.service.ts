@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { Product } from "./entities/product";
 
 @Injectable({
@@ -26,5 +26,12 @@ export class ProductService {
   findByCategoryId(id_category: number): Observable<Product[]>{
     const url = `${this.productsUrl}/category/${id_category}`;
     return this.http.get<Product[]>(url);
+  }
+
+  searchProducts(term: string): Observable<Product[]>{
+    if(!term.trim()){
+      return of([]); // empty
+    }
+    return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`);
   }
 }
