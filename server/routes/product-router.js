@@ -5,9 +5,16 @@ const productRepo = require('../models/products');
 let productRouter = express.Router();
 
 productRouter.get('/', (req,res) => {
-    productRepo.findAll(products => {
-        res.send(products);
-    });
+    if(req.query.name){
+        console.log(req.query.name);
+        productRepo.findByNameLike(req.query.name, products => {
+            res.send(products);
+        });
+    }else{
+        productRepo.findAll(products => {
+            res.send(products);
+        });
+    }
 });
 
 productRouter.get('/category/:id_category', (req,res) => {
