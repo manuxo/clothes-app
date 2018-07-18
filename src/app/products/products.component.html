@@ -3,7 +3,6 @@
 </div>
 <br><br>
 <div class="row" *ngIf="products">
-  
   <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
       <div class="card h-100">
               <a href="#">
@@ -35,5 +34,11 @@
     </div><!--.card-->
   </div><!--.col-lg-4 col-md-6 mb-4-->
 </div><!--.row-->
+<div class="row" *ngIf="!products">
+  <div class="col-lg-12 col-md-12 mb-12">
+    No se han encontrado resultados.
+  </div>
+</div>
+
 
 
