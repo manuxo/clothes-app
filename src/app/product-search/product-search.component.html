@@ -1,4 +1,5 @@
-<form class="form-inline col-lg-12 col-md-12 mb-12">
-  <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
-  <button class="btn btn-dark" type="submit">Buscar</button>
+<form [formGroup]="productForm" class="form-inline col-lg-12 col-md-12 mb-12">
+  <input class="form-control" type="search" placeholder="Buscar" formControlName="name">
+  <button (click)="search()" class="btn btn-dark" type="button">Buscar</button>
+  <p>Form value: {{ productForm.value | json }}</p>
 </form>

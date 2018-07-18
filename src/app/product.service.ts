@@ -30,7 +30,7 @@ export class ProductService {
 
   searchProducts(term: string): Observable<Product[]>{
     if(!term.trim()){
-      return of([]); // empty
+      return of([]); // empty term
     }
     return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`);
   }

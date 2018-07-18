@@ -28,12 +28,17 @@ export class ProductsComponent implements OnInit{
 
   ngOnInit() {
     const id_category = +this.route.snapshot.paramMap.get('id_category');
-    if(id_category){
-      this.getProductsByCategoryId(id_category);
-    }
-    else{
-      this.getProducts();
-    }
+    this.route.queryParams.subscribe(params => {
+      if(params['name']){
+        this.getProductsByNameLike(params['name']);
+      }else{
+        if(id_category){
+          this.getProductsByCategoryId(id_category);
+        }else{
+          this.getProducts();
+        }
+      }
+    });
   }
 
   getProducts(): void{
@@ -44,6 +49,12 @@ export class ProductsComponent implements OnInit{
 
   getProductsByCategoryId(id_category): void{
     this.productService.findByCategoryId(id_category).subscribe(products => {
+      this.products = products;
+    });
+  }
+
+  getProductsByNameLike(name): void{
+    this.productService.searchProducts(name).subscribe(products => {
       this.products = products;
     });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-product-search',
   templateUrl: './product-search.component.html',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductSearchComponent implements OnInit {
 
-  constructor() { }
+  productForm = new FormGroup({
+    name: new FormControl()
+  });
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  search(){
+    this.router.navigateByUrl(`/products?name=${this.productForm.get('name').value}`);
   }
 
 }

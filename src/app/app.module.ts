@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './products/products.component';
@@ -9,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { CategoryService } from "./category.service";
 import { AppRoutingModule } from './/app-routing.module';
 import { ProductSearchComponent } from './product-search/product-search.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { ProductSearchComponent } from './product-search/product-search.componen
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService,CategoryService],
   bootstrap: [AppComponent]
