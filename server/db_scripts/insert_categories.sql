@@ -12,3 +12,6 @@ VALUES('Camisas');
 INSERT INTO categories(name)
 VALUES('Polos');
 
+INSERT INTO categories(name)
+VALUES('Zapatillas');
+
