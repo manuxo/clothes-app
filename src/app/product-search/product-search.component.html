@@ -1,4 +1,6 @@
 <form [formGroup]="productForm" class="form-inline col-lg-12 col-md-12 mb-12">
   <input (keyup.enter)="search()" class="form-control" type="search" placeholder="Buscar" formControlName="name">
-  <button (click)="search()" class="btn btn-dark" type="button">Buscar</button>
+  <button (click)="search()" class="btn btn-outline-light" type="button">
+    <i class="fa fa-search"></i>
+  </button>
 </form>

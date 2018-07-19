@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-
 //Init App
 const PORT = process.env.PORT || 3000;
 const IP = process.env.IP || 'localhost';

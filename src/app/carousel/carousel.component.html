@@ -1,0 +1,13 @@
+<div class="col-lg-12 col-md-12 mb-12">
+  <ngb-carousel *ngIf="images">
+    <ng-template ngbSlide *ngFor="let image of images">
+      <img [src]="'http://localhost:3000/img/'+image" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>
+          <i class="fa fa-shopping-bag" aria-hidden="true"></i> MAE
+        </h3>
+        <p>Las mejores promociones te esperan.</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

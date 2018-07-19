@@ -10,19 +10,23 @@ import { CategoryComponent } from './category/category.component';
 import { CategoryService } from "./category.service";
 import { AppRoutingModule } from './/app-routing.module';
 import { ProductSearchComponent } from './product-search/product-search.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     CategoryComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot()
   ],
   providers: [ProductService,CategoryService],
   bootstrap: [AppComponent]
