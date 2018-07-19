@@ -1,14 +1,7 @@
-<br><br>
-<div class="row justify-content-center">
-  <app-carousel></app-carousel>
-</div>
-<br><br>
 <div class="row" *ngIf="products">
   <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
       <div class="card h-100">
-              <a href="#">
-                <img class="card-img-top" [src]="'http://localhost:3000/img/' + product.image" alt="{{product.image}}">
-              </a>
+        <img class="card-img-top" [src]="'http://localhost:3000/img/' + product.image" alt="{{product.image}}">
         <div class="card-body">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">
@@ -34,11 +27,6 @@
     </div><!--.card-->
   </div><!--.col-lg-4 col-md-6 mb-4-->
 </div><!--.row-->
-<div class="row" *ngIf="!products">
-  <div class="col-lg-12 col-md-12 mb-12">
-    No se han encontrado resultados.
-  </div>
-</div>
 
 
 

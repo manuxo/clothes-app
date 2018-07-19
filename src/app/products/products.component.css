@@ -1,3 +1,16 @@
 .card-title{
     color: #47717F;
 }
+
+@keyframes delayedShow {
+    to {
+        opacity: 1;
+    }
+}
+
+.card{
+    opacity: 0;
+    animation: 0.3s linear 0.2s forwards delayedShow ;
+}
+
+

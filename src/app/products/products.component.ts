@@ -56,8 +56,6 @@ export class ProductsComponent implements OnInit{
   getProductsByNameLike(name): void{
     this.productService.searchProducts(name).subscribe(products => {
       this.products = products;
-      if(this.products.length === 0)
-        this.products = null;
     });
   }
 }

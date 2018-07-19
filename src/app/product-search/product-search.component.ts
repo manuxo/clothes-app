@@ -19,6 +19,7 @@ export class ProductSearchComponent implements OnInit {
 
   search(){
     this.router.navigateByUrl(`/products?name=${this.productForm.get('name').value}`);
+    this.productForm.setValue({'name':''});
   }
 
 }

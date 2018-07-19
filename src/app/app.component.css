@@ -4,12 +4,23 @@ body {
 
 div.main-content{
     margin: 15px auto;
+    
 }
-
-
 
 @media (min-width: 992px) {
   body {
       padding-top: 56px;
   }
+}
+
+@media (max-width: 499px){
+    #nav-search{
+        display: none;
+    }
+}
+
+@media (max-width: 1024px){
+    app-carousel{
+        display: none;
+    }
 }

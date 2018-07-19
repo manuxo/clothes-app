@@ -1,3 +1,16 @@
-h2{
-   color: #47717F;
+h3{
+   color:darkgray;
+}
+
+.container-social{
+    padding: 10px 0;
+}
+
+a.active{
+    background-color: #47717F;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-social{
+    margin: 0 2px;
 }

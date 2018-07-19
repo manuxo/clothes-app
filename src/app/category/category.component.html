@@ -1,10 +1,28 @@
-<div class="row text-center">
-  <h2 class="my-4">{{'Categorías' | uppercase}}</h2>
+<div class="row justify-content-center">
+  <h3 class="my-4">{{'Categorías' | uppercase}}</h3>
 </div><!--.row-->
-<div class="row">
-  <div class="list-group" style="width: 100%;" role="tablist">
-    <a class="list-group-item list-group-item-action text-center" routerLink="/products">Todos</a>
-    <a class="list-group-item list-group-item-action text-center" *ngFor="let category of categories" routerLink="/products/category/{{category.id}}">{{category.name}}</a>
+<div class="row justify-content-center">
+  <div class="list-group" style="width: 80%;" role="tablist">
+    <a class="list-group-item list-group-item-action text-center" 
+    routerLink="/products"
+    [ngClass]="{'active': (selectedIndex === -1)}"
+    (click)="selectIndex(-1)">Todos</a>
+    <a class="list-group-item list-group-item-action text-center" 
+    *ngFor="let category of categories" 
+    routerLink="/products/category/{{category.id}}"
+    [ngClass]="{'active': (selectedIndex === category.id)}"
+    (click)="selectIndex(category.id)">{{category.name}}</a>
   </div><!--.list-group-->
+</div><!--.row-->
+<div class="row justify-content-center">
+  <h3 class="my-4">{{'Sígueme en' | uppercase}}</h3>
+</div><!--.row-->
+<div class="row justify-content-center container-social">
+  <a type="button" class="btn btn-primary btn-social" href="https://www.facebook.com/TheFeededByYou" target="_blank">
+    <i class="fa fa-facebook-official" aria-hidden="true"></i>
+  </a>
+  <a type="button" class="btn btn-success btn-social" href="https://github.com/manuxo" target="_blank">
+    <i class="fa fa-github" aria-hidden="true"></i>
+  </a>
 </div><!--.row-->
 

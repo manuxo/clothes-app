@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CategoryService } from "../category.service";
 import { Category } from "../entities/category";
 import { Location } from "@angular/common";
@@ -11,6 +11,8 @@ import { Location } from "@angular/common";
 export class CategoryComponent implements OnInit {
 
   categories: Category[];
+
+  selectedIndex: Number = -1;
 
   constructor(
     private categoryService: CategoryService,
@@ -25,5 +27,9 @@ export class CategoryComponent implements OnInit {
     this.categoryService.findAll().subscribe(categories => {
       this.categories = categories;
     });
+  }
+
+  selectIndex(id: Number): void{
+    this.selectedIndex = id;
   }
 }
