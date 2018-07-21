@@ -3,8 +3,7 @@ body {
 }
 
 div.main-content{
-    margin: 15px auto;
-    
+    margin: 15px auto;  
 }
 
 @media (min-width: 992px) {
@@ -13,7 +12,7 @@ div.main-content{
   }
 }
 
-@media (max-width: 499px){
+@media (max-width: 768px){
     #nav-search{
         display: none;
     }

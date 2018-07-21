@@ -12,6 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     ProductsComponent,
     CategoryComponent,
     ProductSearchComponent,
-    CarouselComponent
+    CarouselComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

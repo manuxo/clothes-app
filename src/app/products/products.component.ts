@@ -13,7 +13,8 @@ import { Location } from "@angular/common";
 export class ProductsComponent implements OnInit{
 
   products: Product[];
-
+  page: Number = 1;
+  
   constructor(
     private productService : ProductService,
     private route: ActivatedRoute,

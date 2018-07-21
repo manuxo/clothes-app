@@ -13,4 +13,9 @@
     animation: 0.3s linear 0.2s forwards delayedShow ;
 }
 
+ngb-pagination{
+    opacity: 0;
+    animation: 0.3s linear 0.2s forwards delayedShow ;
+}
+
 
