@@ -8,7 +8,6 @@ use db_clothes;
 
 CREATE TABLE users(
 	id int primary key auto_increment,
-    username varchar(100) not null,
     email varchar(100) not null,
     first_name varchar(100) not null,
     last_name varchar(100) not null,

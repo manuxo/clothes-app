@@ -13,6 +13,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './footer/footer.component';
     CategoryComponent,
     ProductSearchComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
