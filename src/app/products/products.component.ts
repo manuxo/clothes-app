@@ -3,7 +3,16 @@ import { ProductService } from "../product.service";
 import { Product } from "../entities/product";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
+import { FormControl, FormGroup } from "@angular/forms";
+import { SharedAuthService } from '../shared-auth.service';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
+
+class ProductItem{
+  product: Product;
+  form: FormGroup;
+  mount: number;
+};
 
 @Component({
   selector: 'app-products',
@@ -11,15 +20,18 @@ import { Location } from "@angular/common";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit{
-
+  productItems: ProductItem[] = [];
   products: Product[];
-  page: Number = 1;
-  
+  page: number = 1;
+  selectedQuantity: number = 1;
+  selectedProduct: Product;
   constructor(
     private productService : ProductService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
+    public authService: SharedAuthService,
+    private modalService: NgbModal
   ) {
     //Reload component when params change
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -42,21 +54,55 @@ export class ProductsComponent implements OnInit{
     });
   }
 
+  private buildForms(): void {
+    this.products.forEach(product => {
+      this.productItems.push({
+        product: product,
+        form: new FormGroup({
+          id: new FormControl(product.id),
+          quantity: new FormControl('1')
+        }),
+        mount: product.price
+      } as ProductItem);
+    });
+  }
+
   getProducts(): void{
     this.productService.findAll().subscribe(products => {
       this.products = products;
+      this.buildForms();
     });
   }
 
   getProductsByCategoryId(id_category): void{
     this.productService.findByCategoryId(id_category).subscribe(products => {
       this.products = products;
+      this.buildForms();
     });
   }
 
   getProductsByNameLike(name): void{
     this.productService.searchProducts(name).subscribe(products => {
       this.products = products;
+      this.buildForms();
     });
+  }
+  openModal(content, productItem: ProductItem): void{
+    this.selectedQuantity = productItem.form.get('quantity').value;
+    this.selectedProduct = productItem.product;
+    this.modalService.open(content, {centered: true});
+  }
+
+  calcTotal(productItem: ProductItem, eventTarget: HTMLInputElement): void{
+    let quantity = Number.parseInt(eventTarget.value);
+    if(quantity > 100){
+      quantity = 100;
+      eventTarget.value = quantity.toString();
+    }
+    if(quantity < 1){
+        quantity = 1;
+        eventTarget.value = quantity.toString();
+    }
+    productItem.mount = quantity * productItem.product.price;
   }
 }

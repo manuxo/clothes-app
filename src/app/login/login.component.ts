@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { User } from '../entities/user';
 import { SharedAuthService } from '../shared-auth.service';
 import { Router } from "@angular/router";
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    public authService: SharedAuthService
+    public authService: SharedAuthService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -61,5 +63,9 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email').value.trim();
     const password = this.loginForm.get('password').value;
     this.authenticate(email,password);
+  }
+
+  back(){
+    this.location.back();
   }
 }

@@ -1,27 +1,59 @@
 <div class="row" *ngIf="products">
-  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
-      <div class="card h-100">
-        <img class="card-img-top" [src]="'http://localhost:3000/img/' + product.image" alt="{{product.image}}">
-        <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                      <h4 class="card-title">{{product.brand | uppercase}}</h4>
-                  </li>
-                  <li class="list-group-item">
-                    
-                    <div class="card-text">
-                      <span style="color: crimson;">${{product.price}}</span> {{product.name}}
-                    </div>
-                  </li>
-                  <li class="list-group-item">
-                    
-                    <p class="card-text">{{product.description}}</p>
-                  </li>
-                  <li class="list-group-item">
-            <button class="btn btn-dark" style="width:100%; text-align: center;">
-                <i class="fa fa-cart-plus" aria-hidden="true"></i> Añadir al carrito
-            </button>
+  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let productItem of productItems">
+    <div class="card h-100">
+      <img class="card-img-top" [src]="'http://localhost:3000/img/' + productItem.product.image" alt="{{productItem.product.image}}">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h4 class="card-title">{{productItem.product.brand | uppercase}}</h4>
           </li>
+          <li class="list-group-item">
+            <div class="card-text">
+              <span style="color: crimson;">${{productItem.product.price}}</span> {{productItem.product.name}}
+            </div>
+          </li>
+          <li class="list-group-item">
+            <p class="card-text">{{productItem.product.description}}</p>
+          </li>
+          <li class="list-group-item">
+            <form [formGroup]="productItem.form" class="form">
+              <div class="form-group">
+                  <input type="number" class="form-control" min="1" step="1" max="100" formControlName="quantity"
+                  aria-describedby="quantityHelp" (input)="calcTotal(productItem,$event.target)">
+                  <small id="quantityHelp" class="form-text text-info"><b>Total: ${{productItem.mount}}</b></small>
+                  <input type="hidden" class="form-control" formControlName="id">
+              </div>
+              <button class="btn btn-dark" style="width:100%; text-align: center;" [disabled]="!authService.isAuth()" (click)="openModal(content,productItem)">
+                <i class="fa fa-cart-plus" aria-hidden="true"></i> Añadir al carrito
+              </button>
+              <small *ngIf="!authService.isAuth()" class="form-text text-info">
+                ¿Desea comprar?  
+                <a routerLink="/login">
+                  <span class="badge badge-info">Iniciar Sesión</span>
+                </a>
+              </small>
+            </form>
+          </li>
+          <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title">Añadir al carrito</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img [src]="'http://localhost:3000/img/' + selectedProduct.image" alt="{{selectedProduct.image}}" class="rounded img-fluid mx-auto d-block">
+              <p><b>Producto:</b> {{selectedProduct.name}}</p>
+              <p><b>Cantidad:</b> {{selectedQuantity}}</p>
+              <p><b>Monto: <span class="text-success">${{selectedQuantity * selectedProduct.price}}</span></b></p>
+            </div>
+            <div class="modal-footer">
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Volver</button>
+                <button type="button" class="btn btn-dark">Añadir</button>
+              </div>
+            </div>
+          </ng-template>
         </ul>
       </div><!--.card-body-->
     </div><!--.card-->

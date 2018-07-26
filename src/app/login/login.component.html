@@ -21,7 +21,8 @@
                 <label class="form-check-label" for="mantenerSesion">Mantener sesión iniciada</label>
               </div>
               <div class="btn-group">
-                <button (click)="login()" type="reset" class="btn btn-primary" routerLink="/products">Ingresar</button>
+                <button (click)="back()" type="button" class="btn btn-outline-dark">Volver</button>
+                <button (click)="login()" type="reset" class="btn btn-dark" routerLink="/products">Ingresar</button>
               </div>
             </div><!--.card-body-->
           </form><!--.form .card-->
@@ -50,7 +51,8 @@
                   <small id="passwHelp" class="form-text text-muted">La contraseña debe contener como mínimo 8 caracteres.</small>
                 </div>
                 <div class="btn-group">
-                  <button type="reset" class="btn btn-primary" (click)="register()">Registrarse</button>
+                  <button (click)="back()" type="button" class="btn btn-outline-dark">Volver</button>
+                  <button type="reset" class="btn btn-dark" (click)="register()">Registrarse</button>
                 </div>
             </div><!--.card-body-->
           </form><!--.form .card-->
