@@ -21,11 +21,13 @@ app.use(morgan('dev'));
 //Routes
 const productRouter = require('./server/routes/product-router');
 const categoryRouter = require('./server/routes/category-router');
+const userRouter = require('./server/routes/user-router');
 
 app.use('/api/products', productRouter);
 
 app.use('/api/categories', categoryRouter);
 
+app.use('/api/users', userRouter);
 
 //Serve index.html
 app.get('*', (req,res,next) => {
