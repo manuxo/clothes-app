@@ -7,19 +7,21 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="example@gmail.com" formControlName="email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="example@gmail.com" 
+                formControlName="email" (keyup.enter)="login()" required>
                 <small id="emailHelp" class="form-text text-muted">Nosotros nunca compartiremos tu email con nadie.</small>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" 
+                formControlName="password" (keyup.enter)="login()" required>
               </div>
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="mantenerSesion">
                 <label class="form-check-label" for="mantenerSesion">Mantener sesión iniciada</label>
               </div>
               <div class="btn-group">
-                <button (click)="login()" type="reset" class="btn btn-primary">Ingresar</button>
+                <button (click)="login()" type="reset" class="btn btn-primary" routerLink="/products">Ingresar</button>
               </div>
             </div><!--.card-body-->
           </form><!--.form .card-->

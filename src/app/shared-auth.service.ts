@@ -25,4 +25,8 @@ export class SharedAuthService {
     else
       return false;
   }
+
+  logout(){
+    sessionStorage.clear();
+  }
 }
