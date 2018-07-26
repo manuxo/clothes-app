@@ -33,11 +33,13 @@ userRouter.post('/signup', (req,res) => {
                         email: req.body.email,
                         password: hash
                     };
-                    userRepo.save(userData, result => res.send(result));
+                    userRepo.save(userData, result => {
+                        res.status(201).send(result);
+                    });
                 }
             });
         }
-    })
+    });
 });
 
 userRouter.post('/login', (req,res) => {
@@ -62,6 +64,7 @@ userRouter.post('/login', (req,res) => {
                 );
                 return res.status(200).send({
                     message: 'Auth successful',
+                    userData: payload,
                     token: token
                 });
             }

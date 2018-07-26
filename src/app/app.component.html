@@ -35,11 +35,26 @@
                   <i class="fa fa-envelope" aria-hidden="true"></i> Contacto
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/login">
-                  <i class="fa fa-user" aria-hidden="true"></i> Ingresar
-                </a>
-              </li>
+
+              <ng-container *ngIf="!authService.isAuth(); else isAuthTemplate">
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/login">
+                    <i class="fa fa-user" aria-hidden="true"></i> Ingresar
+                  </a>
+                </li>
+              </ng-container>
+              <ng-template #isAuthTemplate>
+                <div ngbDropdown class="d-inline-block">
+                  <button class="btn btn-outline-primary text-white" style="border: 1px solid transparent;" id="dropdownUser" ngbDropdownToggle>
+                    <i class="fa fa-user" aria-hidden="true"></i> {{authService.getUser().email}}
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownUser">
+                    <button class="dropdown-item">Mi Perfil</button>
+                    <button class="dropdown-item">Mis Compras</button>
+                    <button class="dropdown-item">Cerrar Sesión</button>
+                  </div>
+                </div>
+              </ng-template>
             </ul>
           </div><!--.collapse navbar-collapse-->
         </div><!--.container-->

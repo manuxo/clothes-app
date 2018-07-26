@@ -14,6 +14,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { SharedAuthService } from './shared-auth.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [ProductService,CategoryService],
+  providers: [ProductService,CategoryService, SharedAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
