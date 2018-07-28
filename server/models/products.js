@@ -28,7 +28,7 @@ productRepo.findAll = callback => {
 
 productRepo.findById = (id,callback) => {
     if(con){
-        let sql = `SELECT * FROM products WHERE id=${id} LIMIT 1`;
+        let sql = `SELECT * FROM products WHERE id=${id}`;
         con.query(sql, (err,rows) => {
             if(err)
                 throw err;

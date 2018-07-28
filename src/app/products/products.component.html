@@ -20,7 +20,7 @@
               <div class="form-group">
                   <input type="number" class="form-control" min="1" step="1" max="100" formControlName="quantity"
                   aria-describedby="quantityHelp" (input)="calcTotal(productItem,$event.target)">
-                  <small id="quantityHelp" class="form-text text-info"><b>Total: ${{productItem.mount}}</b></small>
+                  <small id="quantityHelp" class="form-text text-info"><b>Total: ${{productItem.amount}}</b></small>
                   <input type="hidden" class="form-control" formControlName="id">
               </div>
               <button class="btn btn-dark" style="width:100%; text-align: center;" [disabled]="!authService.isAuth()" (click)="openModal(content,productItem)">
@@ -50,7 +50,7 @@
             <div class="modal-footer">
               <div class="btn-group">
                 <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Volver</button>
-                <button type="button" class="btn btn-dark">Añadir</button>
+                <button type="button" class="btn btn-dark" (click)="addToCart()">Añadir</button>
               </div>
             </div>
           </ng-template>

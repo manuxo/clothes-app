@@ -42,7 +42,7 @@ userRouter.post('/signup', (req,res) => {
     });
 });
 
-userRouter.post('/login', (req,res) => {
+userRouter.post('/login', (req,res,next) => {
     userRepo.findByEmail(req.body.email, rows => {
         if(rows.length < 1)
             return res.status(401).send({message: 'Auth failed'});
@@ -55,17 +55,24 @@ userRouter.post('/login', (req,res) => {
                     email: rows[0].email,
                     userId: rows[0].id
                 };
+                //Create token
                 const token = jwt.sign(
                   payload,
                   'my_secret_key',
                   {
-                    expiresIn: '0.5h'
+                    expiresIn: '1h'
                   }
                 );
+
+                //Reload shopping cart
+                req.session.visitCount = 0;
+                req.session.shoppingCart = [];
+
                 return res.status(200).send({
                     message: 'Auth successful',
                     userData: payload,
-                    token: token
+                    token: token,
+                    session: req.session
                 });
             }
             res.status(401).send({message: 'Auth failed'});

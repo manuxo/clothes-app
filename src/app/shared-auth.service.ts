@@ -29,4 +29,8 @@ export class SharedAuthService {
   logout(){
     sessionStorage.clear();
   }
+
+  getToken(): string {
+    return localStorage['jwt-user'];
+  }
 }

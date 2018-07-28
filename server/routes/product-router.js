@@ -23,4 +23,10 @@ productRouter.get('/category/:id_category', (req,res) => {
     });
 });
 
+productRouter.get('/:id', (req,res) => {
+    productRepo.findById(req.params.id, product => {
+        res.send(product);
+    });
+})
+
 module.exports = productRouter;

@@ -5,13 +5,15 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { FormControl, FormGroup } from "@angular/forms";
 import { SharedAuthService } from '../shared-auth.service';
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { ShoppingCartService } from "../shopping-cart.service";
+import { CartItem } from '../entities/cart-item';
 
 
 class ProductItem{
   product: Product;
   form: FormGroup;
-  mount: number;
+  amount: number;
 };
 
 @Component({
@@ -25,13 +27,16 @@ export class ProductsComponent implements OnInit{
   page: number = 1;
   selectedQuantity: number = 1;
   selectedProduct: Product;
+  cartItem = CartItem;
+  modalReference: NgbModalRef;
   constructor(
     private productService : ProductService,
     private route: ActivatedRoute,
     private location: Location,
     private router: Router,
     public authService: SharedAuthService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private shoppingCartService: ShoppingCartService
   ) {
     //Reload component when params change
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
@@ -60,9 +65,9 @@ export class ProductsComponent implements OnInit{
         product: product,
         form: new FormGroup({
           id: new FormControl(product.id),
-          quantity: new FormControl('1')
+          quantity: new FormControl(1)
         }),
-        mount: product.price
+        amount: product.price
       } as ProductItem);
     });
   }
@@ -88,9 +93,9 @@ export class ProductsComponent implements OnInit{
     });
   }
   openModal(content, productItem: ProductItem): void{
-    this.selectedQuantity = productItem.form.get('quantity').value;
+    this.selectedQuantity = Number.parseInt(productItem.form.get('quantity').value);
     this.selectedProduct = productItem.product;
-    this.modalService.open(content, {centered: true});
+    this.modalReference = this.modalService.open(content, {centered: true});
   }
 
   calcTotal(productItem: ProductItem, eventTarget: HTMLInputElement): void{
@@ -103,6 +108,17 @@ export class ProductsComponent implements OnInit{
         quantity = 1;
         eventTarget.value = quantity.toString();
     }
-    productItem.mount = quantity * productItem.product.price;
+    productItem.amount = quantity * productItem.product.price;
+  }
+
+  addToCart(): void {
+    const item = new CartItem();
+    item.id_product = this.selectedProduct.id;
+    item.quantity = this.selectedQuantity;
+    item.amount = this.selectedQuantity * this.selectedProduct.price;
+    this.shoppingCartService.add(item).subscribe((cartItem) => {
+      this.cartItem = cartItem;
+    });
+    this.modalReference.close();
   }
 }
