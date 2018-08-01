@@ -25,12 +25,9 @@ app.use(expressSession({
     cookie: { maxAge: 1000 * 60 * 60 }
 })); // req.session
 
-app.use((req,res,next) => {
-    if(!req.session.visitCount)
-        req.session.visitCount = 1;
-    else
-        req.session.visitCount += 1;
-    next();
+
+app.get('/api/session',(req,res) => {
+    res.send(req.session);
 });
 
 //Routes
