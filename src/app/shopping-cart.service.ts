@@ -7,6 +7,7 @@ import { SharedAuthService } from './shared-auth.service';
   providedIn: 'root'
 })
 export class ShoppingCartService {
+  
   constructor(private http: HttpClient,private authService: SharedAuthService) {}
   private shoppingCartUrl = 'http://localhost:3000/api/shoppingCart';
   private httpOptions = {

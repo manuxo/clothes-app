@@ -9,6 +9,7 @@ class CartItem{
   amount: number;
 }
 
+const IGV = 0.18;
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,7 +19,9 @@ class CartItem{
 export class ShoppingCartComponent implements OnInit {
 
   cartItems: CartItem[] = []; 
-
+  private subtotal: number = 0;
+  private tax: number = 0;
+  private total: number = 0;
   constructor(
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService
@@ -37,8 +40,14 @@ export class ShoppingCartComponent implements OnInit {
           cartItem.quantity = item.quantity;
           cartItem.amount = item.amount;
           this.cartItems.push(cartItem);
+          const amount = cartItem.amount;
+          this.subtotal += amount;
+          this.tax += amount * IGV;
+          this.total += amount + amount * IGV;
         });
       }
+      
+      
     });
   }
 }
