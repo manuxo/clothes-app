@@ -3,5 +3,5 @@ module.exports = (req,res,next) => {
         next();
     }
     else
-        return res.status(400).send('Invalid input, please insert id_product,quantity and amount.');
+        return res.status(400).send('Invalid input (cart item): {id_product,quantity,amount}');
 }

@@ -17,7 +17,15 @@ const checkProductId = (req,res,next) => {
     else{
         next();
     }
-}
+};
+
+const checkIfContains = (cartItem, shoppingCart) => {
+    for(let i = 0; i < shoppingCart.length; i++){
+        if(shoppingCart[i].id_product === cartItem.id_product)
+            return shoppingCart[i];
+    }
+    return null;
+};
 
 //Exports router
 let shoppingCartRouter = express.Router();
@@ -34,7 +42,13 @@ shoppingCartRouter.post('/add',checkAuth,checkCartItem,(req,res) => {
         quantity : req.body.quantity,
         amount: req.body.amount
     };
-    req.session.shoppingCart.push(cartItem);
+    const itemSelected = checkIfContains(cartItem,req.session.shoppingCart);
+    if(itemSelected){
+        itemSelected.quantity += cartItem.quantity;
+        itemSelected.amount += cartItem.amount;
+    }else{
+        req.session.shoppingCart.push(cartItem);
+    }
     res.status(201).send(cartItem);
 });
 
